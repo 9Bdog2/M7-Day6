@@ -1,0 +1,69 @@
+//Redux hooks 
+//useSelector for reading and useDispatch for writing 
+
+
+const state = useSelector((state)=>state.cart.stock.lenght)
+//we just created a constant with the whole redux store in it 
+//so you can access state.book, state.user, state.cart.products
+//const mapStateToProps =state => state
+
+const userName = useSelector(state => state.user.username)
+//assign a little piece of it 
+const theWholeState = useSelector(state => state)
+//assign the whole state
+//theWholeState.book.stock.lenght
+const theNumberOfBooksInStock = useSelector(state => state.book.stock.lenght)
+
+export default cart
+//no more connect()
+
+
+const dispatch = useDispatch()
+
+...dispatch(...)
+
+//the last hook we learn, useStore()
+
+//new example
+
+const cartLenght = useSelector(state => state.cart.products.lenght)
+const username = useSelecto(state => state.user.username)
+
+const dispatch = useDispatch()
+
+...dispatch(setUsernameAction(name))..
+
+//remove connect()
+
+//BookStore
+
+/convert from class component to functional component 
+
+const [bookSelected, setBookSelected] = useState(null)
+
+const booksInStock = useSelector (State => state.book.stock)
+const errorCode = useSelector(state => state.book.errorCode)
+
+const dispatch = useDispatch()
+
+//import useEffect()
+
+useEffect(() => {
+	//work in progress
+	dispatch(getBooksAction())	
+},[])
+
+const changeBook = (book) => setBookSelected(book)
+
+//BookDetails
+//convert from class component to functional component 
+
+//import useEffect and useState
+
+useEffect(() => {
+	setBook(bookSelected)
+	//converting logic 
+}, [bookSelected]) 
+
+const disptach = useDispatch()
+
