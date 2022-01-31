@@ -67,3 +67,44 @@ useEffect(() => {
 
 const disptach = useDispatch()
 
+// new part of the lecture //
+//npm i redux-persist
+
+const persistConfig = {
+	key: "root",
+	storage: storage,
+}
+
+//add by default
+//"root" = from root above 
+//"cart" or "user", as an example 
+//"root" will take care of everything 
+//storage = local storage
+//storageSession = session storage
+
+import storage from "redux-persist/lib/storage" //default to local storage for the web
+
+const persistedReducer = persistReducer(persistConfig, bigReducer)
+
+let configureStore = createStore(
+	persistedReducer,
+	....
+)
+
+const persistor = persistStore(configureStore)
+
+export { configureStore, persistor}
+
+//index.js, App level
+
+import {PersistGate} from "redux-persist/integration/react"
+
+import {configureStore, persistor} from "./redux/store"
+...
+<Provider store= {configureStore}>
+	<PersistGate persistor= {persistor}>
+		<App />
+	<PersistGate />
+<Provider />
+...
+
