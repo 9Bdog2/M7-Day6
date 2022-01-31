@@ -108,3 +108,19 @@ import {configureStore, persistor} from "./redux/store"
 <Provider />
 ...
 
+//redux-persist-transform-encrypt npm i 
+
+const persistConfig = {
+	key: "root",
+	storage,
+	transform : [
+		encryptTransform({
+			secretKey : process.env.REACT_APP_SECRET_KEY //mandatory
+			onError : (error) => {console.log("ecryption error", error)} // this is optional
+		})
+	]
+}
+
+//.env , save the password 
+//REACT_APP_SECRET_KEY = "key"
+
